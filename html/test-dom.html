@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title></title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <button class="btn">策略3</button>
+  <button class="btn">复杂</button>
+  <button class="btn">删除</button>
+  <button class="btn">复杂</button>
+  <button class="btn">复杂</button>
+
+
+  <script type="module">
+    import h from '../dom/h.js'
+    import patch from '../dom/patch.js'
+
+    let app = document.querySelector('#app')
+
+let vnode = h('ul', {}, [
+  h('li', { key: 'A' }, 'A'),
+  h('li', { key: 'B' }, 'B'),
+  h('li', { key: 'C' }, 'C'),
+  h('li', { key: 'D' }, 'D'),
+  h('li', { key: 'E' }, 'E'),
+])
+
+let oldVnode = patch(app, vnode)
+
+let vnode2 = h('ul', {}, [
+  h('li', { key: 'E' }, 'E'),
+  h('li', { key: 'D' }, 'D'),
+  h('li', { key: 'C' }, 'C'),
+  h('li', { key: 'B' }, 'B'),
+  h('li', { key: 'A' }, 'A'),
+])
+let vnode3 = h('ul', {}, [
+  h('li', { key: 'E' }, 'E'),
+  h('li', { key: 'D' }, 'D'),
+  h('li', { key: 'C' }, 'C'),
+  h('li', { key: 'A' }, 'A'),
+  h('li', { key: 'B' }, 'B'),
+  h('li', { key: 'K' }, 'K'),
+])
+let vnode4 = h('ul', {}, [
+  h('li', { key: 'A' }, 'A'),
+  h('li', { key: 'B' }, 'B'),
+  h('li', { key: 'C' }, 'C'),
+])
+let vnode5 = h('ul', {}, [
+  h('li', { key: 'E' }, 'E'),
+  h('li', { key: 'C' }, 'C'),
+  h('li', { key: 'V' }, 'V'),
+])
+let vnode6 = h('ul', {}, [
+  h('li', { key: 'A' }, 'A'),
+  h('li', { key: 'B' }, 'B'),
+  h('li', { key: 'C' }, 'C'),
+  h('li', { key: 'D' }, 'D'),
+  h(
+    'li',
+    { key: 'E' },
+    h('ul', {}, [
+      h('li', { key: 'A' }, 'A'),
+      h('li', { key: 'B' }, 'B'),
+      h('li', { key: 'C' }, 'C'),
+      h('li', { key: 'D' }, 'D'),
+      h('li', { key: 'E' }, h('div', { key: 'R' }, 'R')),
+    ])
+  ),
+])
+let vnodeList = [vnode2, vnode3, vnode4, vnode5, vnode6]
+let btn = document.querySelectorAll('.btn')
+for (let i = 0; i < btn.length; i++) {
+  btn[i].onclick = () => {
+    patch(vnode, vnodeList[i])
+  }
+}
+
+    </script>
+
+</body>
+
+</html>
