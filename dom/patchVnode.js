@@ -13,7 +13,7 @@ import updateChildren from './updateChildren.js'
 export default function patchVnode(oldVnode, newVnode) {
   // 1.判断是否相同对象
   console.log('同一个虚拟节点')
-  if (oldVnode === newVnode) return
+  if (oldVnode === newVnode) return 
   // 2.判断newVnode上有没有text
   // 这里为啥不考虑 oldVnode呢，因为 newVnode有text说明就没children
   if (newVnode.text && !newVnode.children) {
@@ -26,7 +26,7 @@ export default function patchVnode(oldVnode, newVnode) {
   } else {
     // 3.判断oldVnode有children, 这个时候newVnode 没有text但是有 children
     if (oldVnode.children) {
-    //   ...这里新旧节点都存在children 这里要使用 updateChildren 下面进行实现 diff算法实现
+    //   这里新旧节点都存在children 这里要使用 updateChildren 下面进行实现 diff算法实现
         updateChildren(oldVnode.elm, oldVnode.children, newVnode.children)
     } else {
       console.log('old没有children，new有children')

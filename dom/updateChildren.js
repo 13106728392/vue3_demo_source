@@ -96,10 +96,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       }
 
       // 判断当前项是否存在 keyMap 中 ,当前项时 新前(newStartVnode)
-      let idInOld = keyMap[newStartIdx.data]
-        ? keyMap[newStartIdx.data.key]
-        : undefined
-
+      let idInOld = keyMap[newStartVnode.data.key]
       // 存在的话就是移动操作
       if (idInOld) {
         console.log('移动节点')

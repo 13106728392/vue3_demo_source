@@ -2,7 +2,7 @@
 import vnode from './vnode.js'
 import createElm from './createElm.js'
 import sameVnode from './sameVnode.js'
-import  patchVnode from './patchVnode.js'
+import patchVnode from './patchVnode.js'
 
 
 // 导出 patch
